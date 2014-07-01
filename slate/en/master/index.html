@@ -118,7 +118,8 @@ connections from a client, listens for commands, executes those commands on a
 mobile device, and responds with an HTTP response representing the result of
 the command execution. The fact that we have a client/server architecture
 opens up a lot of possibilities: we can write our test code in any language
-that has a client. We can put the server on a different machine than our
+that has a HTTP client API, but it is easier to use one of the existing Appium
+client library. We can put the server on a different machine than our
 tests are running on. We can write test code and rely on a cloud service
 like <a href="https://saucelabs.com/mobile">Sauce Labs</a> to receive and interpret the commands.</p>
 
@@ -189,7 +190,7 @@ more detailed requirements and instructions?</p>
 to use of standard automation APIs on all platforms.</li>
 <li>You can write tests with your favorite dev tools using any <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol">WebDriver</a>-compatible
 language such as Java, <a href="https://github.com/appium/selenium-objective-c">Objective-C</a>,
-JavaScript with Node.js (in both <a href="https://github.com/admc/wd">callback</a> and <a href="https://github.com/jlipps/yiewd">yield-based</a> flavors),
+JavaScript with Node.js (in <a href="https://github.com/admc/wd">promise, callback</a> or <a href="https://github.com/jlipps/yiewd">generator</a> flavors),
 PHP, Python, <a href="https://github.com/appium/ruby_lib">Ruby</a>, C#, Clojure, or Perl
 with the Selenium WebDriver API and language-specific client libraries.</li>
 <li>You can use any testing framework.</li>
@@ -212,7 +213,7 @@ opens up the possibility of true cross-platform native mobile automation. Finall
 want to run tests on. See below for particular platform requirements.</p>
 
 <p>If you want to run Appium via an <code class="prettyprint">npm install</code>, hack with or contribute to Appium, you will need
-<a href="http://nodejs.org">node.js and npm</a> 0.10 or greater (<code class="prettyprint">brew install node</code>: make sure you have not installed Node or Appium with <code class="prettyprint">sudo</code>, otherwise you’ll run into problems). We recommend the latest stable version.</p>
+<a href="http://nodejs.org">node.js and npm</a> 0.10 or greater (use [n](https://github.com/visionmedia/n) or <code class="prettyprint">brew install node</code> to install Node.js. Make sure you have not installed Node or Appium with <code class="prettyprint">sudo</code>, otherwise you’ll run into problems). We recommend the latest stable version.</p>
 
 <p>To verify that all of Appium’s dependencies are met you can use <code class="prettyprint">appium-doctor</code>.
 Run <code class="prettyprint">appium-doctor</code> and supply the <code class="prettyprint">--ios</code> or <code class="prettyprint">--android</code> flags to verify that all
@@ -601,7 +602,7 @@ apps because Appium relies on OS X-only libraries to support iOS testing.</p>
 
 <h2 id="setup">Setup</h2>
 
-<p>To get started, you’ll need to install node.js (v.0.8 or greater). Just
+<p>To get started, you’ll need to install node.js (v.0.10 or greater). Just
 follow the <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">instructions for your flavor of linux</a>.</p>
 
 <p>Once you’ve got node.js installed, install the <a href="http://developer.android.com/sdk/index.html">Android SDK</a>.
@@ -690,7 +691,8 @@ want to zip it up, you can.</p>
 
 <ul>
 <li>A local absolute path to your simulator-compiled .app directory or .zip</li>
-<li>A url of a zip file containg your .app package</li>
+<li>A url of a zip file containing your .app package</li>
+<li>A path to one of the sample app relative to the appium install root.</li>
 </ul>
 
 <p>Using your WebDriver library of choice, set the remote session to use these
@@ -743,6 +745,7 @@ otherwise failing, you can restart it by running:</p>
 <ul>
 <li>A local absolute path to your .apk or a .zip of it</li>
 <li>A url of a zip file containg your .apk</li>
+<li>A path to one of the sample app relative to the appium install root.</li>
 </ul>
 
 <p>Using your WebDriver library of choice, set the remote session to use these
@@ -1793,7 +1796,7 @@ context id to leave the web frame.</li>
 
 <h2 id="execution-against-a-real-ios-device">Execution against a real iOS device</h2>
 
-<p>To interrogate and interact with a web view appium establishes a connection
+<p>To interact with a web view appium establishes a connection
 using a remote debugger. When executing the examples below against a
 simulator this connection can be established directly as the simulator and
 the appium server are on the same machine. When executing against a real
@@ -2350,7 +2353,8 @@ output when it’s run in verbose mode so that we can diagnose what’s going on
 
 <ul>
 <li>If you’ve installed Node from the Node website, it requires that you use sudo
-for <code class="prettyprint">npm</code>. This is not ideal. Try to get node with <code class="prettyprint">brew install node</code> instead!</li>
+for <code class="prettyprint">npm</code>. This is not ideal. Try to get node with 
+[n](https://github.com/visionmedia/n) or <code class="prettyprint">brew install node</code> instead!</li>
 <li>Webview support works on real iOS devices with a proxy, see <a href="https://groups.google.com/d/msg/appium-discuss/u1ropm4OEbY/uJ3y422a5_kJ">discussion</a>.</li>
 <li>Sometimes iOS UI elements become invalidated milliseconds after they are
 found. This results in an error that looks like <code class="prettyprint">(null) cannot be tapped</code>.
