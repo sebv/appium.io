@@ -52,7 +52,7 @@ desc 'Run local linkchecker (require manual install)'
 task :linkchecker_local do
   # To install: 'sudo pip install linkchecker'
   # Start local jekyll first
-  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" -P 1 http://127.0.0.1:4000 --check-extern' % linkchecker_thread_num
+  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" http://127.0.0.1:4000 --check-extern' % linkchecker_thread_num
 end
 
 desc 'Run live linkchecker (require manual install)'
@@ -63,10 +63,8 @@ task :linkchecker_live do
 end
 
 desc 'Start/Restart jekyll server (require manual install)'
-task :jekyll do
-  # To install: 'gem install --no-rdoc --no-ri jekyll jekyll-mentions jemoji jekyll-redirect-from jekyll-sitemap'
-  system `pkill -9 -f jekyll`
-  system `jekyll serve`
+task :jekyll do  system `pkill -9 -f jekyll`
+  system `bundle exec jekyll serve`
 end
 
 desc 'Kill jekyll server'
@@ -86,7 +84,7 @@ task :usage do
   puts '    rake hardcore_clean          --> Delete repos + site and doc folders'
   puts '    rake linkchecker_local       --> Run linkchecker against local site (require manual install)'
   puts '    rake linkchecker_live        --> Run linkchecker against live site (require manual install)'
-  puts '    rake jekyll &                --> Start/Restart jekyll server (require manual install)'
+  puts '    rake jekyll &                --> Start/Restart jekyll server'
   puts '    rake kill_jekyll             --> Kill jekyll server'
   puts ''
   puts 'Dev Note:'
