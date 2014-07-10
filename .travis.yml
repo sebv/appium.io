@@ -4,7 +4,7 @@ branches:
 language: ruby
 env:
   global:
-  - LINKCHECKER_THREAD=5
+  - LINKCHECKER_THREAD=10
 rvm:
   - 2.1.2
 before_script:   
@@ -14,15 +14,14 @@ script:
   - bundle exec jekyll serve &
   - sleep 10
   - rake linkchecker_local
-  # - rake kill_jekyll
-  # rebuilding
-  # - rake install
-  # - bundle exec rake specs
-  # - bundle exec rake clean
-  # - bundle exec rake full_build
-  # # checking again 
- #  - jekyll serve &
- #  - sleep 10
- #  - rake linkchecker_local
- #  - rake kill_jekyll
- # 
+  - rake kill_jekyll
+  rebuilding
+  - rake install
+  - bundle exec rake specs
+  - bundle exec rake clean
+  - bundle exec rake full_build
+  # checking again 
+  - bundle exec jekyll serve &
+  - sleep 10
+  - rake linkchecker_local
+  - rake kill_jekyll
