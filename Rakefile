@@ -52,7 +52,7 @@ desc 'Run local linkchecker (require manual install)'
 task :linkchecker_local do
   # To install: 'sudo pip install linkchecker'
   # Start local jekyll first
-  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" http://127.0.0.1:4000 --check-extern' % linkchecker_thread_num
+  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" -P 1 http://127.0.0.1:4000 --check-extern' % linkchecker_thread_num
 end
 
 desc 'Run live linkchecker (require manual install)'
