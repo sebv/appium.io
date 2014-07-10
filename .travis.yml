@@ -15,7 +15,7 @@ script:
   - sleep 10
   - rake linkchecker_local
   - rake kill_jekyll
-  rebuilding
+  # rebuilding
   - rake install
   - bundle exec rake specs
   - bundle exec rake clean
