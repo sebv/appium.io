@@ -9,7 +9,7 @@ rvm:
   - 2.1.2
 before_script:
   - sudo pip install --upgrade pip 
-  - sudo pip install --upgrade LinkChecker
+  - sudo pip install LinkChecker
   - gem install --no-rdoc --no-ri jekyll jekyll-mentions jemoji jekyll-redirect-from jekyll-sitemap    
 script:
   # checking what's deployed 
