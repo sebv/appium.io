@@ -11,7 +11,7 @@ before_script:
   - sudo pip install LinkChecker
 script:
   # checking what's deployed 
-  - rake jekyll &
+  - bundle exec jekyll serve &
   - sleep 10
   - rake linkchecker_local
   # - rake kill_jekyll
