@@ -4,7 +4,8 @@ branches:
 language: ruby
 env:
   global:
-  - LINKCHECKER_THREAD=10
+  - LINKCHECKER_THREAD=3
+  - LINKCHECKER_PAUSE=5
 rvm:
   - 2.1.2
 before_script:   

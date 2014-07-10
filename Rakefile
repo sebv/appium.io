@@ -48,18 +48,21 @@ end
 linkchecker_thread_num = ENV['LINKCHECKER_THREAD']
 linkchecker_thread_num = 10 if !linkchecker_thread_num
 
+linkchecker_pause = ENV['LINKCHECKER_PAUSE']
+linkchecker_pause = 1 if !linkchecker_pause
+
 desc 'Run local linkchecker (require manual install)'
 task :linkchecker_local do
   # To install: 'sudo pip install linkchecker'
   # Start local jekyll first
-  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" -P 1 http://127.0.0.1:4000 --check-extern' % linkchecker_thread_num
+  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" -P %s http://0.0.0.0:4000 --check-extern' % [linkchecker_thread_num, linkchecker_pause]
 end
 
 desc 'Run live linkchecker (require manual install)'
 task :linkchecker_live do
   # To install: 'sudo pip install linkchecker'
   # Start local jekyll first
-  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" -P 1 http://appium.io --check-extern' % linkchecker_thread_num
+  sh 'linkchecker -f .linkcheckerrc -t %s -r "-1" -P %s http://appium.io --check-extern' % [linkchecker_thread_num, linkchecker_pause]
 end
 
 desc 'Start/Restart jekyll server (require manual install)'
