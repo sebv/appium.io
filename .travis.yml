@@ -26,3 +26,4 @@ script:
   - sleep 10
   - rake linkchecker_local
   - rake kill_jekyll
+ 
