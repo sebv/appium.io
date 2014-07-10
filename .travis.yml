@@ -15,7 +15,7 @@ script:
   - bundle exec jekyll serve &
   - sleep 10
   - rake linkchecker_local
-  - rake kill_jekyll
+  - pkill -9 -f jekyll || true
   # rebuilding
   - rake install
   - bundle exec rake specs
@@ -25,4 +25,4 @@ script:
   - bundle exec jekyll serve &
   - sleep 10
   - rake linkchecker_local
-  - rake kill_jekyll
+  - pkill -9 -f jekyll || true
